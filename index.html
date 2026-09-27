@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Next Candle — Trading Community</title>
+  <title>Next Candle — Trading Education</title>
+  <meta
+    name="description"
+    content="Next Candle — structured trading education, market analysis and a focused trading community."
+  />
 
-  <meta name="description"
-        content="Next Candle is a modern trading community focused on education, market structure, liquidity, risk management and disciplined execution.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
+    :root {
+      --bg: #080a0b;
+      --panel: #0d1011;
+      --panel-2: #111516;
+      --border: rgba(255,255,255,.08);
+      --text: #f4f6f5;
+      --muted: #8b9491;
+      --green: #52e39a;
+      --green-dark: #193d2d;
+      --max: 1180px;
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #050706;
-      color: #f4f7f5;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -28,33 +53,63 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
     .container {
-      width: min(1120px, 92%);
+      width: min(var(--max), calc(100% - 40px));
       margin: auto;
     }
 
+    /* NAV */
+
     nav {
-      height: 80px;
+      height: 76px;
       display: flex;
       align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8,10,11,.82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+      display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #18201b;
+      align-items: center;
     }
 
     .logo {
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: Manrope, sans-serif;
+      font-size: 19px;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -.5px;
     }
 
-    .logo span {
-      color: #39e878;
+    .logo-mark {
+      width: 29px;
+      height: 29px;
+      border: 1px solid rgba(82,227,154,.5);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font-weight: 800;
+      font-size: 14px;
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
-      color: #aab4ad;
+      gap: 30px;
+      color: #aeb6b3;
       font-size: 14px;
     }
 
@@ -63,235 +118,412 @@
     }
 
     .nav-button {
-      background: #39e878;
-      color: #041007;
-      padding: 11px 18px;
-      border-radius: 9px;
-      font-weight: 700;
-      font-size: 14px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: .2s;
     }
 
+    .nav-button:hover {
+      border-color: rgba(82,227,154,.4);
+      color: var(--green);
+    }
+
+    /* HERO */
+
     .hero {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      text-align: center;
+      padding: 120px 0 105px;
+      border-bottom: 1px solid var(--border);
       position: relative;
-      overflow: hidden;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      width: 600px;
-      height: 600px;
-      background: #39e878;
-      opacity: 0.08;
-      filter: blur(120px);
-      border-radius: 50%;
+      width: 650px;
+      height: 400px;
       left: 50%;
-      top: 40%;
-      transform: translate(-50%, -50%);
+      top: 30px;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse,
+        rgba(82,227,154,.08),
+        transparent 68%
+      );
+      pointer-events: none;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      padding: 7px 11px;
+      border-radius: 7px;
+      color: #b9c1be;
+      font-size: 12px;
+      margin-bottom: 28px;
     }
 
-    .badge {
-      display: inline-block;
-      border: 1px solid #26342b;
-      background: #0b100d;
-      color: #7df2a3;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      margin-bottom: 25px;
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(82,227,154,.8);
     }
 
     h1 {
-      font-size: clamp(48px, 8vw, 92px);
-      line-height: 0.95;
-      letter-spacing: -5px;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(50px, 7vw, 86px);
+      line-height: .98;
+      letter-spacing: -4px;
       max-width: 900px;
-      margin: auto;
+      margin-bottom: 28px;
+      font-weight: 800;
     }
 
     h1 span {
-      color: #39e878;
+      color: var(--green);
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: 28px auto;
-      color: #9ca79f;
-      font-size: 18px;
+    .hero-text {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 610px;
+      line-height: 1.75;
+      margin-bottom: 38px;
     }
 
-    .buttons {
+    .hero-actions {
       display: flex;
-      justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
     }
 
     .primary {
-      background: #39e878;
-      color: #041007;
-      padding: 15px 25px;
-      border-radius: 10px;
-      font-weight: 800;
+      background: var(--green);
+      color: #07100b;
+      padding: 14px 21px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
     }
 
     .secondary {
-      border: 1px solid #29352e;
-      background: #0b0f0c;
-      padding: 15px 25px;
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
-    .secondary:hover {
-      border-color: #39e878;
-    }
-
-    section {
-      padding: 100px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      max-width: 650px;
-      margin: auto;
-    }
-
-    .section-title h2 {
-      font-size: 42px;
-      letter-spacing: -2px;
-      margin-bottom: 15px;
-    }
-
-    .section-title p {
-      color: #89948c;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 55px;
-    }
-
-    .card {
-      background: #090d0a;
-      border: 1px solid #1b251f;
-      border-radius: 16px;
-      padding: 28px;
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #31523c;
-    }
-
-    .icon {
-      font-size: 27px;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      margin-bottom: 9px;
-    }
-
-    .card p {
-      color: #879189;
+      border: 1px solid var(--border);
+      padding: 14px 21px;
+      border-radius: 8px;
+      color: #d8dddb;
+      font-weight: 600;
       font-size: 14px;
     }
 
-    .pricing {
-      max-width: 500px;
-      margin: 55px auto 0;
-      background: #090d0a;
-      border: 1px solid #253229;
-      border-radius: 20px;
-      padding: 35px;
-      text-align: center;
+    .secondary:hover {
+      border-color: rgba(255,255,255,.18);
     }
 
-    .pricing h3 {
-      font-size: 28px;
+    /* TICKER */
+
+    .ticker {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      color: #69726f;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ticker strong {
+      color: #aeb6b3;
+      font-weight: 600;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 105px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(34px, 4vw, 52px);
+      letter-spacing: -2px;
+      line-height: 1.05;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 430px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* FEATURE GRID */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      min-height: 205px;
+      transition: .25s;
+    }
+
+    .feature:hover {
+      border-color: rgba(82,227,154,.25);
+      transform: translateY(-3px);
+    }
+
+    .feature-number {
+      color: #505957;
+      font-size: 11px;
+      margin-bottom: 45px;
+    }
+
+    .feature h3 {
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* MASTERCLASS */
+
+    .masterclass {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+    }
+
+    .master-main,
+    .master-side {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 12px;
+    }
+
+    .master-main {
+      padding: 42px;
+    }
+
+    .master-main h3 {
+      font-family: Manrope, sans-serif;
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .master-main p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 580px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .modules {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .module {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .module span:first-child {
+      color: #dfe4e2;
+    }
+
+    .module span:last-child {
+      color: #68716e;
+      font-size: 11px;
+    }
+
+    .master-side {
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-label {
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .price {
-      font-size: 45px;
+      font-family: Manrope, sans-serif;
+      font-size: 46px;
       font-weight: 800;
-      margin: 15px 0;
+      margin: 10px 0 8px;
     }
 
-    .price span {
-      font-size: 15px;
-      color: #78847c;
-      font-weight: normal;
+    .price small {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Inter, sans-serif;
+      font-weight: 400;
     }
 
-    .features {
-      list-style: none;
-      text-align: left;
-      margin: 25px 0;
+    .included {
+      margin: 28px 0;
+      display: grid;
+      gap: 13px;
     }
 
-    .features li {
-      padding: 9px 0;
-      color: #b6c0b9;
+    .included div {
+      color: #b7bfbc;
+      font-size: 13px;
     }
 
-    .features li::before {
+    .included div::before {
       content: "✓";
-      color: #39e878;
-      margin-right: 10px;
+      color: var(--green);
+      margin-right: 9px;
     }
 
-    .full-button {
-      display: block;
-      background: #39e878;
-      color: #041007;
-      padding: 15px;
-      border-radius: 10px;
-      font-weight: 800;
-    }
+    /* COMMUNITY */
 
     .community {
-      background: #080c09;
-      border-top: 1px solid #18211b;
-      border-bottom: 1px solid #18211b;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 45px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 12px;
+      gap: 30px;
     }
+
+    .community h3 {
+      font-family: Manrope, sans-serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .community p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 550px;
+    }
+
+    /* FOOTER */
 
     footer {
-      padding: 35px 0;
-      color: #69736c;
-      font-size: 13px;
-      text-align: center;
+      padding: 32px 0;
     }
 
-    @media (max-width: 750px) {
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      color: #656d6a;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
       .nav-links {
         display: none;
       }
 
-      .grid {
-        grid-template-columns: 1fr;
+      .hero {
+        padding: 90px 0 80px;
       }
 
       h1 {
-        letter-spacing: -3px;
+        font-size: 52px;
+        letter-spacing: -2.5px;
       }
 
-      section {
-        padding: 70px 0;
+      .section-header {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .masterclass {
+        grid-template-columns: 1fr;
+      }
+
+      .community {
+        display: block;
+      }
+
+      .community .primary {
+        display: inline-block;
+        margin-top: 25px;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+
+      .footer-links {
+        margin-top: 15px;
       }
     }
   </style>
@@ -299,144 +531,172 @@
 
 <body>
 
-  <div class="container">
+  <!-- NAVIGATION -->
 
-    <nav>
-      <div class="logo">
-        Next<span>Candle</span>
-      </div>
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="logo">
+        <div class="logo-mark">N</div>
+        NEXT CANDLE
+      </a>
 
       <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#courses">Education</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#method">Approach</a>
+        <a href="#masterclass">Masterclass</a>
         <a href="#community">Community</a>
       </div>
 
       <a
-        class="nav-button"
         href="https://whop.com/next-candle-3630"
-        target="_blank">
-        Join Pro
+        class="nav-button"
+        target="_blank"
+      >
+        Get Access
       </a>
-    </nav>
 
-  </div>
+    </div>
+  </nav>
 
+
+  <!-- HERO -->
 
   <main>
 
     <section class="hero">
+      <div class="container">
 
-      <div class="container hero-content">
-
-        <div class="badge">
-          NEXT CANDLE TRADING COMMUNITY
+        <div class="eyebrow">
+          <span class="dot"></span>
+          NEXT CANDLE / TRADING EDUCATION
         </div>
 
         <h1>
-          Trade Smarter.<br>
-          Read The <span>Next Candle.</span>
+          Read the market.<br>
+          <span>Trade with structure.</span>
         </h1>
 
-        <p>
-          A modern trading community focused on market structure,
-          liquidity, session analysis, risk management, psychology
-          and disciplined execution.
+        <p class="hero-text">
+          Next Candle is a focused trading education platform built around
+          market structure, liquidity, session analysis, execution and risk
+          management.
         </p>
 
-        <div class="buttons">
+        <div class="hero-actions">
 
           <a
-            class="primary"
             href="https://whop.com/next-candle-3630"
-            target="_blank">
-            Get Pro Access
+            class="primary"
+            target="_blank"
+          >
+            Explore Masterclass →
           </a>
 
           <a
-            class="secondary"
             href="https://discord.gg/n6xttR2m8"
-            target="_blank">
-            Join Discord
+            class="secondary"
+            target="_blank"
+          >
+            Join Community
           </a>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <section id="features">
+    <!-- MARKET TICKER -->
+
+    <div class="ticker">
+      <div class="container ticker-inner">
+
+        <strong>STRUCTURE</strong>
+        <span>LIQUIDITY</span>
+        <span>SESSIONS</span>
+        <span>EXECUTION</span>
+        <span>RISK</span>
+        <span>PSYCHOLOGY</span>
+        <span>DISCIPLINE</span>
+
+      </div>
+    </div>
+
+
+    <!-- APPROACH -->
+
+    <section id="method">
 
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-header">
 
-          <h2>Everything you need to improve.</h2>
+          <div>
+            <div class="section-label">01 / Approach</div>
+            <h2>A framework built<br>around process.</h2>
+          </div>
 
-          <p>
-            Learn, analyze, track and improve your trading process
-            inside one platform.
+          <p class="section-description">
+            Instead of chasing random entries, learn how to structure your
+            analysis around the areas that matter before an execution is made.
           </p>
 
         </div>
 
 
-        <div class="grid">
+        <div class="features">
 
-          <div class="card">
-            <div class="icon">📚</div>
-            <h3>Trading Education</h3>
+          <div class="feature">
+            <div class="feature-number">01</div>
+            <h3>Market Structure</h3>
             <p>
-              Structured lessons covering market structure,
-              liquidity, sessions and execution.
+              Understand directional structure, breaks, shifts and the context
+              behind price movement.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">📊</div>
-            <h3>Trading Journal</h3>
+          <div class="feature">
+            <div class="feature-number">02</div>
+            <h3>Liquidity</h3>
             <p>
-              Track your trades, setups, results and performance
-              to understand your process.
+              Study how liquidity can influence price and how key highs and
+              lows fit into a broader setup.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">🧠</div>
-            <h3>Trading Psychology</h3>
+          <div class="feature">
+            <div class="feature-number">03</div>
+            <h3>Session Analysis</h3>
             <p>
-              Develop discipline, patience and a consistent
-              trading mindset.
+              Build a structured process around Asia, London and New York
+              sessions.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">🎯</div>
-            <h3>Strategy</h3>
+          <div class="feature">
+            <div class="feature-number">04</div>
+            <h3>Execution</h3>
             <p>
-              Learn structured approaches to liquidity,
-              sessions and trade confirmation.
+              Learn how confirmation, entries and invalidation can fit into a
+              repeatable trading process.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">🧮</div>
+          <div class="feature">
+            <div class="feature-number">05</div>
             <h3>Risk Management</h3>
             <p>
-              Understand position sizing, risk-to-reward and
-              structured trade management.
+              Understand position sizing, risk per trade and why consistency
+              matters more than individual outcomes.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">💬</div>
-            <h3>Private Community</h3>
+          <div class="feature">
+            <div class="feature-number">06</div>
+            <h3>Psychology</h3>
             <p>
-              Connect with other traders and discuss markets,
-              setups and ideas.
+              Develop rules and habits designed to reduce impulsive decisions
+              and improve execution discipline.
             </p>
           </div>
 
@@ -447,51 +707,108 @@
     </section>
 
 
-    <section id="courses">
+    <!-- MASTERCLASS -->
+
+    <section id="masterclass">
 
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-header">
 
-          <h2>Learn with structure.</h2>
+          <div>
+            <div class="section-label">02 / Masterclass</div>
+            <h2>Learn the process.<br>Build your own edge.</h2>
+          </div>
 
-          <p>
-            A growing library of educational content designed
-            around practical trading concepts.
+          <p class="section-description">
+            A structured educational environment covering the foundations,
+            analysis process and execution concepts used throughout Next Candle.
           </p>
 
         </div>
 
-        <div class="grid">
 
-          <div class="card">
-            <h3>01 — Fundamentals</h3>
-            <p>Build a strong foundation before moving into advanced concepts.</p>
+        <div class="masterclass">
+
+          <div class="master-main">
+
+            <h3>Next Candle Masterclass</h3>
+
+            <p>
+              Work through a structured collection of lessons covering the
+              core concepts behind our approach to analysing the market.
+            </p>
+
+            <div class="modules">
+
+              <div class="module">
+                <span>Market Foundations</span>
+                <span>MODULE 01</span>
+              </div>
+
+              <div class="module">
+                <span>Market Structure</span>
+                <span>MODULE 02</span>
+              </div>
+
+              <div class="module">
+                <span>Liquidity & Price Behaviour</span>
+                <span>MODULE 03</span>
+              </div>
+
+              <div class="module">
+                <span>Session Analysis</span>
+                <span>MODULE 04</span>
+              </div>
+
+              <div class="module">
+                <span>Execution & Setups</span>
+                <span>MODULE 05</span>
+              </div>
+
+              <div class="module">
+                <span>Risk & Psychology</span>
+                <span>MODULE 06</span>
+              </div>
+
+            </div>
+
           </div>
 
-          <div class="card">
-            <h3>02 — Market Structure</h3>
-            <p>Understand structure, trends, ranges and key price movements.</p>
-          </div>
 
-          <div class="card">
-            <h3>03 — Liquidity</h3>
-            <p>Learn how liquidity and key levels can influence price.</p>
-          </div>
+          <div class="master-side">
 
-          <div class="card">
-            <h3>04 — Session Analysis</h3>
-            <p>Study the behavior of major trading sessions.</p>
-          </div>
+            <div>
 
-          <div class="card">
-            <h3>05 — Execution</h3>
-            <p>Build a structured process for planning and executing trades.</p>
-          </div>
+              <div class="price-label">MASTERCLASS ACCESS</div>
 
-          <div class="card">
-            <h3>06 — Psychology</h3>
-            <p>Develop consistency, discipline and better decision making.</p>
+              <div class="price">
+                Premium
+              </div>
+
+              <p class="price-label">
+                Access through Whop
+              </p>
+
+              <div class="included">
+
+                <div>Full Masterclass</div>
+                <div>Private Community</div>
+                <div>Educational Resources</div>
+                <div>Future Content Updates</div>
+
+              </div>
+
+            </div>
+
+            <a
+              href="https://whop.com/next-candle-3630"
+              class="primary"
+              target="_blank"
+            >
+              Get Masterclass Access →
+            </a>
+
           </div>
 
         </div>
@@ -501,74 +818,34 @@
     </section>
 
 
-    <section id="pricing">
+    <!-- COMMUNITY -->
+
+    <section id="community">
 
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-label">03 / Community</div>
 
-          <h2>Join Next Candle Pro.</h2>
+        <div class="community">
 
-          <p>
-            Unlock the full education platform and community.
-          </p>
+          <div>
 
-        </div>
+            <h3>Trade alone. Learn together.</h3>
 
+            <p>
+              Join the Next Candle Discord to discuss markets, setups,
+              education and the process behind becoming a more disciplined
+              trader.
+            </p>
 
-        <div class="pricing">
-
-          <h3>Next Candle Pro</h3>
-
-          <div class="price">
-            Premium
           </div>
 
-          <ul class="features">
-
-            <li>Full Masterclass</li>
-            <li>Advanced strategy education</li>
-            <li>Premium lessons</li>
-            <li>Trading journal</li>
-            <li>Advanced trading tools</li>
-            <li>Private community</li>
-
-          </ul>
-
           <a
-            class="full-button"
-            href="https://whop.com/next-candle-3630"
-            target="_blank">
-            Get Full Access
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <section id="community" class="community">
-
-      <div class="container">
-
-        <div class="section-title">
-
-          <h2>Join the community.</h2>
-
-          <p>
-            Discuss trading, share ideas and continue improving
-            alongside other traders.
-          </p>
-
-          <br>
-
-          <a
-            class="primary"
             href="https://discord.gg/n6xttR2m8"
-            target="_blank">
-            Join Next Candle Discord
+            class="primary"
+            target="_blank"
+          >
+            Join Discord →
           </a>
 
         </div>
@@ -580,13 +857,25 @@
   </main>
 
 
-  <div class="container">
+  <!-- FOOTER -->
 
-    <footer>
-      © 2026 Next Candle. Educational purposes only.
-    </footer>
+  <footer>
 
-  </div>
+    <div class="container footer-inner">
+
+      <div>
+        © 2026 Next Candle. Educational purposes only.
+      </div>
+
+      <div class="footer-links">
+        <a href="#method">Approach</a>
+        <a href="#masterclass">Masterclass</a>
+        <a href="#community">Community</a>
+      </div>
+
+    </div>
+
+  </footer>
 
 </body>
 </html>
